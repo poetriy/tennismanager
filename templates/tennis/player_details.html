@@ -1,0 +1,45 @@
+{% extends "tennis/base.html" %}
+
+{% block title %}{{ player.get_name }}{% endblock %}
+{% block profile %}
+    {% if user.is_authenticated and player.id == user.player.id %}
+        class="active"
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <strong>Name:</strong> {{ player.get_name }} <br>
+    <strong>Points:</strong> {{ player.point }}<br>
+    <strong>Match Record:</strong> {{ player.match_wins }}-{{ player.match_losses }}<br>
+    <strong>Game Record:</strong> {{ player.game_wins }}-{{ player.game_losses }}<br>
+    <strong>Match Win percentage:</strong> {{ player.match_win_percent }}<br>
+    <strong>Game Win percentage:</strong>{{ player.game_win_percent }}<br><br>
+
+    <strong>Match History:</strong><br>
+
+    <table class ="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Match Date</th>
+            <th>Winner1</th>
+            <th>Winner2</th>
+            <th>Loser1</th>
+            <th>Loser2</th>
+            <th>Winner_Games</th>
+            <th>Loser_Games</th>
+        </tr>
+        {% for did_win, match in matches %}
+            {% if did_win %}<tr class="success">
+                {% else %}      <tr class="danger">
+            {% endif %}
+        <td>{{ match.match_date }}</td>
+        <td>{{ match.winner1.get_name }}</td>
+        <td>{{ match.winner2.get_name }}</td>
+        <td>{{ match.loser1.get_name }}</td>
+        <td>{{ match.loser2.get_name }}</td>
+        <td>{{ match.winner_games }}</td>
+        <td>{{ match.loser_games }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

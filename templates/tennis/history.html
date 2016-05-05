@@ -1,0 +1,39 @@
+{% extends "tennis/base.html" %}
+{% block title %}Match History{% endblock %}
+{% block history %}class="active"{% endblock %}
+
+{% block body %}
+    <table class ="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Match Date</th>
+            <th>Winner1</th>
+            <th>Winner2</th>
+            <th>Loser1</th>
+            <th>Loser2</th>
+            <th>Winner_Games</th>
+            <th>Loser_Games</th>
+        </tr>
+        {% for match in matches %}
+            {% if user.is_authenticated and user.player.id == match.winning_player.id %}
+                <tr class="success">
+                    {% elif user.is_authenticated and user.player.id == match.losing_player.id %}
+                <tr class="danger">
+                    {% else %}
+                <tr>
+            {% endif %}
+        <td>{{ match.match_date }}</td>
+        <td>{{ match.winner1.get_name }}</td>
+        <td>{{ match.winner2.get_name }}</td>
+        <td>{{ match.loser1.get_name }}</td>
+        <td>{{ match.loser2.get_name }}</td>
+        <td>{{ match.winner_games }}</td>
+        <td>{{ match.loser_games }}</td>
+        <td style="border-bottom:hidden;border-top:hidden;border-right:hidden;" >
+            <a href="{% url 'delete_history' match.id %}"><span class="glyphicon glyphicon-remove"></span></a>
+
+        </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

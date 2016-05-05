@@ -1,0 +1,24 @@
+{% extends "tennis/base.html" %}
+
+{% block title %}Standings{% endblock %}
+
+{% block body %}
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Points</th>
+      <th>Match Wins/Losses</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for player in players %}
+      <tr>
+  	   <td><a href="{% url 'player_details' player.id %}">{{ player.get_name }}</a></td>
+  	   <td>{{ player.point }}</td>
+  	   <td>{{ player.match_wins }}-{{player.match_losses }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

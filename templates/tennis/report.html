@@ -1,0 +1,12 @@
+{% extends "tennis/base.html" %}
+
+{% block title %}Match Reporting{% endblock %}
+{% block report %}class="active"{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Select MatchType</h2>
+        <a href="{% url 'report_singles' %}" class="btn btn-info" role="button">Singles</a>
+        <a href="{% url 'report_doubles' %}" class="btn btn-info" role="button">Doubles</a>
+    </div>
+{% endblock %}

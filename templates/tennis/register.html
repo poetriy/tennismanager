@@ -1,0 +1,28 @@
+{% extends "tennis/base.html" %}
+
+{% block title %}Register{% endblock %}
+{% block register %}class="active"{% endblock %}
+
+{% block body %}
+  {% if registered %}
+    <strong>Thank you for registering! Your starting point is 0.</strong>
+  {% else %}
+
+        <form id="register_form" method="post" action="{% url 'register' %}"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <div class="input-group">
+            <input type="text" class="form-control" name="username" value="" placeholder="Username">
+            <br />
+            <input type="text" class="form-control" name="email" value="" placeholder="Email">
+            <br />
+            <input type="password" class="form-control" name="password" value="" placeholder="Password">
+            <br />
+            <input type="password" class="form-control" name="confirm_password" value="" placeholder="Confirm Password">
+            </div>
+            <br />
+            <button type="submit" class="btn btn-lg">Register</button>
+        </form>
+  {% endif %}
+{% endblock %}

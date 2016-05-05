@@ -1,0 +1,45 @@
+{% extends "tennis/base.html" %}
+
+{% block title %}Match Reporting{% endblock %}
+{% block report %}class="active"{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <form class="form-horizontal" action="{%  url 'make_singles' %}"
+              method="POST" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>
+            {% csrf_token %}
+
+            <label class="control-label">Date</label>
+            <div class="controls">
+                {{ form.match_date }}
+            </div>
+            <label class="control-label">Stadium</label>
+            <div class="controls">
+                {{ form.stadium }}
+            </div>
+            <label class="control-label">Winner</label>
+            <div class="controls">
+                {{ form.winner1 }}
+            </div>
+            <label class="control-label">Loser</label>
+            <div class="controls">
+                {{ form.loser1 }}
+            </div>
+            <label class="control-label">Winner Games</label>
+            <div class="controls">
+                {{ form.winner_games }}
+            </div>
+            <label class="control-label">Loser Games</label>
+            <div class="controls">
+                {{ form.loser_games }}
+            </div>
+
+
+            <br>
+            <div class="form-actions">
+                <input class="btn btn-primary btn-large" type="submit" value="Submit"/>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}
