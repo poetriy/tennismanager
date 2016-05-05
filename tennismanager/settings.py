@@ -112,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -128,14 +128,3 @@ STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/login'
-
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-SIDE_ID = 1
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'erbmagicleague@gmail.com'
-EMAIL_HOST_PASSWORD = 'erb magic league'
-DEFAULT_FROM_EMAIL = 'erbmagicleague@gmail.com'

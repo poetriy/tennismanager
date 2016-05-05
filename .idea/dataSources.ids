@@ -102,8 +102,13 @@
       <primary-key columns="session_key"/>
       <index name="django_session_de54fa62" unique="true" columns="expire_date"/>
     </table>
-    <table name="elo_ladder_match" schema="" catalog="" type="TABLE">
+    <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
+      <column name="name" sqlType="" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="seq" sqlType="" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="tennis_match" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="type_choice" sqlType="VARCHAR(7)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="match_date" sqlType="DATE" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="winner_games" sqlType="INTEGER UNSIGNED" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="loser_games" sqlType="INTEGER UNSIGNED" precision="0" scale="-1" nullable="false" jdbcType="4"/>
@@ -112,20 +117,19 @@
       <column name="stadium_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="winner1_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="winner2_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
-      <column name="type_choice" sqlType="VARCHAR(7)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <primary-key columns="id"/>
-      <foreign-key name="#FAKE_elo_ladder_match_1" columns="winner2_id" ref-table="elo_ladder_player" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_elo_ladder_match_2" columns="winner1_id" ref-table="elo_ladder_player" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_elo_ladder_match_3" columns="stadium_id" ref-table="elo_ladder_stadium" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_elo_ladder_match_4" columns="loser2_id" ref-table="elo_ladder_player" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_elo_ladder_match_5" columns="loser1_id" ref-table="elo_ladder_player" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="elo_ladder_match_54715e85" unique="true" columns="winner2_id"/>
-      <index name="elo_ladder_match_0b09fd30" unique="true" columns="winner1_id"/>
-      <index name="elo_ladder_match_5c1e67db" unique="true" columns="stadium_id"/>
-      <index name="elo_ladder_match_b4b455cd" unique="true" columns="loser2_id"/>
-      <index name="elo_ladder_match_1385923e" unique="true" columns="loser1_id"/>
+      <foreign-key name="#FAKE_tennis_match_1" columns="winner2_id" ref-table="tennis_player" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_tennis_match_2" columns="winner1_id" ref-table="tennis_player" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_tennis_match_3" columns="stadium_id" ref-table="tennis_stadium" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_tennis_match_4" columns="loser2_id" ref-table="tennis_player" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_tennis_match_5" columns="loser1_id" ref-table="tennis_player" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="tennis_match_54715e85" unique="true" columns="winner2_id"/>
+      <index name="tennis_match_0b09fd30" unique="true" columns="winner1_id"/>
+      <index name="tennis_match_5c1e67db" unique="true" columns="stadium_id"/>
+      <index name="tennis_match_b4b455cd" unique="true" columns="loser2_id"/>
+      <index name="tennis_match_1385923e" unique="true" columns="loser1_id"/>
     </table>
-    <table name="elo_ladder_player" schema="" catalog="" type="TABLE">
+    <table name="tennis_player" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="game_wins" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="game_losses" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
@@ -134,17 +138,13 @@
       <column name="point" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
-      <foreign-key name="#FAKE_elo_ladder_player_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_tennis_player_1" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
     </table>
-    <table name="elo_ladder_stadium" schema="" catalog="" type="TABLE">
+    <table name="tennis_stadium" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="surface_choice" sqlType="VARCHAR(4)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="location_name" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
-    </table>
-    <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
-      <column name="name" sqlType="" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="seq" sqlType="" precision="0" scale="-1" nullable="true" jdbcType="12"/>
     </table>
   </data-source>
 </component>
