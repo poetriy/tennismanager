@@ -91,12 +91,14 @@ def player_details(request, player_id):
     """View to send player data corresponding to player_id to page with template in tennis/player_details.html"""
     p = get_object_or_404(Player, pk=player_id)
     player_matches = Match.objects.filter(winner1=player_id) | Match.objects.filter(loser1=player_id) \
-        | Match.objects.filter(winner2=player_id) | Match.objects.filter(loser2=player_id)
+                     | Match.objects.filter(winner2=player_id) | Match.objects.filter(loser2=player_id)
     player_matches = player_matches.order_by('-match_date')
     """ Make the list of matches a list of tuples.
       The first entry is a boolean stating if player corresponding to player_id won.
       The second entry is the match un-altered."""
-    player_matches = map((lambda x: (x.winner1.id == int(player_id) or x.winner2.id == int(player_id), x)),
+    player_matches = map((lambda x:
+                          (x.winner1.id == int(player_id) or x.winner2.id == int(player_id)
+                           if x.winner2 is not None else (x.winner1.id == int(player_id)), x)),
                          player_matches)
     return render(request, 'tennis/player_details.html',
                   {'player': p, 'matches': player_matches})
