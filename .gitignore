@@ -3,3 +3,10 @@ __pycache__
 db.sqlite3
 .DS_Store
 .idea
+bin
+obj
+staticfiles
+*.mht
+*.pyproj
+web.config
+web.debug.config
